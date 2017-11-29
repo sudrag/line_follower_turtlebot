@@ -3,17 +3,20 @@
 [![Coverage Status](https://coveralls.io/repos/github/sudrag/Line-Follower-TurtleBot/badge.svg?branch=master)](https://coveralls.io/github/sudrag/Line-Follower-TurtleBot?branch=master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+## Overview
+This project uses ROS to demonstrate a simple line following Turtlebot in a simulated Gazebo environment
+
 ## Dependencies
 
-ROS Kinetic
-Catkin
-roscpp package
-std_msgs package
-message_generation package
-OpenCV
+* ROS Kinetic
+* Catkin
+* roscpp package
+* std_msgs package
+* message_generation package
+* OpenCV
 
 ## Solo-Iterative Processes
-This project was designed and developed using the SIP process. Tasks were organized after being identified and split up. The Product backlog,Iteration backlog , Time log and Defect log were recorded for each task and can be viewed in the link below:
+This project was designed and developed using the SIP process. Tasks were organized after being identified and split up. The Product backlog,Iteration backlog , Time log and Defect log were recorded for each task and can be viewed in the link below:  
 https://docs.google.com/spreadsheets/d/1h3F1r1M49jn2B5hGm8tdiEN89Jc4dYUAVsPbGB_VrtQ/edit?usp=sharing
 
 * Iteration 1 Initialization and Planning
