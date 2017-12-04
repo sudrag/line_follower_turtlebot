@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>Line-Follower-TurtleBot</name>
+  <name>line_follower_turtlebot</name>
   <version>0.0.0</version>
   <description>The Line-Follower-TurtleBot package</description>
 
