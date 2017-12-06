@@ -8,6 +8,7 @@
 #include "ros/ros.h"
 #include "ros/console.h"
 #include "linedetect.hpp"
+#include "line_follower_turtlebot/pos.h"
 
 
 
@@ -19,17 +20,23 @@ int main(int argc, char **argv) {
 	// Initializations
 	LineDetect det;
 	cv::Mat output;
+	int dir;
 
 	// Image Subscriber
 	ros::Subscriber sub = n.subscribe("/camera/rgb/image_raw", 
 		1, &LineDetect::imageCallback, &det);
+
+	ros::Publisher dirPub = n.advertise<line_follower_turtlebot::pos>("direction", 1);
+		line_follower_turtlebot::pos msg;
 
 	while (ros::ok()) {
 		if (!det.img.empty()) {
 			
 			// Get the detections
 			det.img_filt = det.Gauss(det.img);	
-			output=det.colorthresh(det.img_filt);
+			output=det.colorthresh(det.img_filt,dir);
+			msg.direction=dir;
+			dirPub.publish(msg);
 			}
 		ros::spinOnce();
 	}

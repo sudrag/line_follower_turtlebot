@@ -7,6 +7,7 @@
 #include "opencv2/opencv.hpp"
 #include "ros/console.h"
 #include "linedetect.hpp"
+#include "line_follower_turtlebot/pos.h"
 
 void LineDetect::imageCallback(const sensor_msgs::ImageConstPtr& msg) {
 	cv_bridge::CvImagePtr cv_ptr;
@@ -35,18 +36,29 @@ cv::Mat LineDetect::Gauss(cv::Mat input) {
 
 }
 
-cv::Mat LineDetect::colorthresh(cv::Mat input){
+cv::Mat LineDetect::colorthresh(cv::Mat input,int dir){
+  float w;
+  float h;
+  float c_x;
 	cv::cvtColor(input,LineDetect::img_hsv, CV_BGR2HSV);
-    //LineDetect::LowerYellow = {{ 10, 10, 10}};
-   // LineDetect::UpperYellow = {{255, 255, 250}};
-    //img_mask = cv2.inRange(img_hsv, LowerYellow, UpperYellow);
-    //LineDetect::img_mask = cv2.inRange(LineDetect::img_hsv, low,up);
-    cv::inRange(LineDetect::img_hsv, cv::Scalar(20, 100, 100), cv::Scalar(30, 255, 255), LineDetect::img_mask);
+    LineDetect::LowerYellow = {20,100,100};
+    LineDetect::UpperYellow = {30,255,255};
+    cv::inRange(LineDetect::img_hsv, LowerYellow, UpperYellow, LineDetect::img_mask);
 		cv::Moments M = cv::moments(LineDetect::img_mask);
         if (M.m00 > 0) {
         cv::Point p1(M.m10/M.m00, M.m01/M.m00);
     	cv::circle(LineDetect::img_mask, p1, 5, cv::Scalar(155,200,0), -1);
 		}
+      cv::Size s = input.size();
+      h = s.height;
+      w = s.width;
+      c_x=M.m10/M.m00;
+      if(c_x-5<w)
+        dir=0;
+      else if(c_x+5>w>c_x-5)
+        dir=1;
+      else if(w>c_x+5)
+        dir=2;
 
         cv::namedWindow("view3");
 			imshow("view3", LineDetect::img_mask);

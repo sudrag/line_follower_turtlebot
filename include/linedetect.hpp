@@ -29,6 +29,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include <vector>
 #include "opencv2/opencv.hpp"
 #include "ros/ros.h"
+#include "line_follower_turtlebot/pos.h"
 
 
 class LineDetect {
@@ -41,13 +42,13 @@ public:
 
 	cv::Mat Gauss(cv::Mat inputImage);
 
-	cv::Mat colorthresh(cv::Mat input);
+	cv::Mat colorthresh(cv::Mat input,int dir);
 
 private:
 
-	std::vector <int>LowerYellow;
+	cv::Scalar LowerYellow;
 
-	std::vector<int> UpperYellow;
+	cv::Scalar UpperYellow;
 
 	cv::Mat img_hsv;
 
