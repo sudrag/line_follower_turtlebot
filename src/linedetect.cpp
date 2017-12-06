@@ -39,20 +39,16 @@ cv::Mat LineDetect::colorthresh(cv::Mat input){
 	cv::cvtColor(input,LineDetect::img_hsv, CV_BGR2HSV);
     //LineDetect::LowerYellow = {{ 10, 10, 10}};
    // LineDetect::UpperYellow = {{255, 255, 250}};
-    int low[3]={0,0,0};
-    int up[3]={1,1,1};
     //img_mask = cv2.inRange(img_hsv, LowerYellow, UpperYellow);
     //LineDetect::img_mask = cv2.inRange(LineDetect::img_hsv, low,up);
     cv::inRange(LineDetect::img_hsv, cv::Scalar(20, 100, 100), cv::Scalar(30, 255, 255), LineDetect::img_mask);
-    cv::namedWindow("view3");
+		cv::Moments M = cv::moments(LineDetect::img_mask);
+        if (M.m00 > 0) {
+        cv::Point p1(M.m10/M.m00, M.m01/M.m00);
+    	cv::circle(LineDetect::img_mask, p1, 5, cv::Scalar(155,200,0), -1);
+		}
+
+        cv::namedWindow("view3");
 			imshow("view3", LineDetect::img_mask);
-
-                // h, w, d = image.shape
-                // search_top = 3*h/4
-                // search_bot = 3*h/4 + 20
-                // mask[0:search_top, 0:w] = 0
-                // mask[search_bot:h, 0:w] = 0
-
-                // M = cv2.moments(mask)
+		return LineDetect::img_mask;
 }
-
