@@ -2,31 +2,6 @@
 <sdf version='1.6'>
   <model name='rooms'>
     <pose frame=''>3.24222 -1.96547 0 0 -0 0</pose>
-    <link name='Door_0'>
-      <collision name='Door_0_Collision'>
-        <geometry>
-          <box>
-            <size>0.9 0.17 2</size>
-          </box>
-        </geometry>
-        <pose frame=''>0 0 1 0 -0 0</pose>
-      </collision>
-      <visual name='Door_0_Visual'>
-        <pose frame=''>0 0 1 0 -0 0</pose>
-        <geometry>
-          <box>
-            <size>0.9 0.17 2</size>
-          </box>
-        </geometry>
-        <material>
-          <script>
-            <uri>file://media/materials/scripts/gazebo.material</uri>
-            <name>Gazebo/Grey</name>
-          </script>
-        </material>
-      </visual>
-      <pose frame=''>-4.37017 -5.00731 0 0 -0 0</pose>
-    </link>
     <link name='Wall_1'>
       <collision name='Wall_1_Collision'>
         <geometry>

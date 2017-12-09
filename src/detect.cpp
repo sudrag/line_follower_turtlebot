@@ -20,7 +20,7 @@ int main(int argc, char **argv) {
 	// Initializations
 	LineDetect det;
 	cv::Mat output;
-	int dir;
+	//int dir;
 
 	// Image Subscriber
 	ros::Subscriber sub = n.subscribe("/camera/rgb/image_raw", 
@@ -34,9 +34,10 @@ int main(int argc, char **argv) {
 			
 			// Get the detections
 			det.img_filt = det.Gauss(det.img);	
-			output=det.colorthresh(det.img_filt,dir);
-			msg.direction=dir;
+			output=det.colorthresh(det.img_filt,det.dir);
+			msg.direction=det.dir;
 			dirPub.publish(msg);
+			//ROS_INFO_STREAM(det.dir);
 			}
 		ros::spinOnce();
 	}

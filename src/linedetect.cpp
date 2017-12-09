@@ -27,40 +27,46 @@ cv::Mat LineDetect::Gauss(cv::Mat input) {
 
   	cv::GaussianBlur(input, output, cv::Size(3, 3), 0, 0);
 
-  	cv::namedWindow("view2");
-			imshow("view2", output);
-
-
   	return output;
 
 
 }
 
 cv::Mat LineDetect::colorthresh(cv::Mat input,int dir){
-  float w;
-  float h;
+  cv::Size s = input.size();
+  float w = s.width;
+  float h = s.height;
   float c_x;
+  float c_y;
 	cv::cvtColor(input,LineDetect::img_hsv, CV_BGR2HSV);
     LineDetect::LowerYellow = {20,100,100};
     LineDetect::UpperYellow = {30,255,255};
     cv::inRange(LineDetect::img_hsv, LowerYellow, UpperYellow, LineDetect::img_mask);
-		cv::Moments M = cv::moments(LineDetect::img_mask);
+    img_mask(cv::Rect(0,0,w,0.9*h))=0;
+		img_mask(cv::Rect(0,0,0.3*w,h))=0;
+    cv::Moments M = cv::moments(LineDetect::img_mask);
         if (M.m00 > 0) {
         cv::Point p1(M.m10/M.m00, M.m01/M.m00);
     	cv::circle(LineDetect::img_mask, p1, 5, cv::Scalar(155,200,0), -1);
 		}
-      cv::Size s = input.size();
-      h = s.height;
-      w = s.width;
       c_x=M.m10/M.m00;
-      if(c_x-5<w)
-        dir=0;
-      else if(c_x+5>w>c_x-5)
-        dir=1;
-      else if(w>c_x+5)
-        dir=2;
-
+      c_y=M.m01/M.m00;
+      float tmp = h*0.7;
+      int tol=20;
+      int count=cv::countNonZero(img_mask);
+      if(c_x<w/2-tol){
+        LineDetect::dir=0;
+      } else if(c_x>w/2+tol){
+        LineDetect::dir=2;
+      } else {
+        LineDetect::dir=1;
+      }
+      if(count==0){
+        LineDetect::dir=3;
+      } 
+      //ROS_INFO_STREAM(dir);
         cv::namedWindow("view3");
 			imshow("view3", LineDetect::img_mask);
 		return LineDetect::img_mask;
+    
 }

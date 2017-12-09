@@ -38,6 +38,8 @@ public:
 
     cv::Mat img_filt;
 
+    int dir;
+
 	void imageCallback(const sensor_msgs::ImageConstPtr& msg);
 
 	cv::Mat Gauss(cv::Mat inputImage);
