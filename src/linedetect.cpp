@@ -14,7 +14,6 @@ void LineDetect::imageCallback(const sensor_msgs::ImageConstPtr& msg) {
 	try {
     	cv_ptr = cv_bridge::toCvCopy(msg, sensor_msgs::image_encodings::BGR8);
     	img = cv_ptr->image;
-    	// cv::imshow("view", imagen);
     	cv::waitKey(30);
   	}
   	catch (cv_bridge::Exception& e) {
@@ -24,15 +23,11 @@ void LineDetect::imageCallback(const sensor_msgs::ImageConstPtr& msg) {
 
 cv::Mat LineDetect::Gauss(cv::Mat input) {
   	cv::Mat output;
-
-  	cv::GaussianBlur(input, output, cv::Size(3, 3), 0, 0);
-
+  	cv::GaussianBlur(input, output, cv::Size(3, 3), 0.1, 0.1);
   	return output;
-
-
 }
 
-cv::Mat LineDetect::colorthresh(cv::Mat input,int dir){
+int LineDetect::colorthresh(cv::Mat input){
   cv::Size s = input.size();
   float w = s.width;
   float h = s.height;
@@ -43,6 +38,7 @@ cv::Mat LineDetect::colorthresh(cv::Mat input,int dir){
     LineDetect::UpperYellow = {30,255,255};
     cv::inRange(LineDetect::img_hsv, LowerYellow, UpperYellow, LineDetect::img_mask);
     img_mask(cv::Rect(0,0,w,0.9*h))=0;
+    img_mask(cv::Rect(0.7*w,0,0.3*w,h))=0;
 		img_mask(cv::Rect(0,0,0.3*w,h))=0;
     cv::Moments M = cv::moments(LineDetect::img_mask);
         if (M.m00 > 0) {
@@ -65,8 +61,10 @@ cv::Mat LineDetect::colorthresh(cv::Mat input,int dir){
         LineDetect::dir=3;
       } 
       //ROS_INFO_STREAM(dir);
+        cv::namedWindow("view2");
+      imshow("view2", input);
         cv::namedWindow("view3");
 			imshow("view3", LineDetect::img_mask);
-		return LineDetect::img_mask;
+		return LineDetect::dir;
     
 }

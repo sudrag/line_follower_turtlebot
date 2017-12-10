@@ -1,7 +1,6 @@
 
 #include <cstdlib>
 #include <string>
-// #include <image_transport/image_transport.h>
 #include <opencv2/highgui/highgui.hpp>
 #include <cv_bridge/cv_bridge.h>
 #include "opencv2/opencv.hpp"
@@ -19,8 +18,6 @@ int main(int argc, char **argv) {
 
 	// Initializations
 	LineDetect det;
-	cv::Mat output;
-	//int dir;
 
 	// Image Subscriber
 	ros::Subscriber sub = n.subscribe("/camera/rgb/image_raw", 
@@ -34,10 +31,8 @@ int main(int argc, char **argv) {
 			
 			// Get the detections
 			det.img_filt = det.Gauss(det.img);	
-			output=det.colorthresh(det.img_filt,det.dir);
-			msg.direction=det.dir;
+			msg.direction=det.colorthresh(det.img_filt);
 			dirPub.publish(msg);
-			//ROS_INFO_STREAM(det.dir);
 			}
 		ros::spinOnce();
 	}

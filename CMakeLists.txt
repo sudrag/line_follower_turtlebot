@@ -27,3 +27,15 @@ add_dependencies(detect line_follower_turtlebot_generate_messages_cpp)
 add_executable(navig src/motion_node.cpp src/turtlebot.cpp)
 target_link_libraries(navig ${catkin_LIBRARIES})
 add_dependencies(navig line_follower_turtlebot_generate_messages_cpp)
+
+if(CATKIN_ENABLE_TESTING)
+  find_package(rostest REQUIRED)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -O0 --coverage")
+
+  add_rostest_gtest(test_detection test/test_detect.launch test/test_detect.cpp src/linedetect.cpp)
+  target_link_libraries(test_detection ${catkin_LIBRARIES} ${OpenCV_LIBS})
+
+  add_rostest_gtest(test_velocity test/test_navig.launch test/test_navig.cpp src/turtlebot.cpp)
+  target_link_libraries(test_velocity ${catkin_LIBRARIES} ${OpenCV_LIBS})
+
+endif()

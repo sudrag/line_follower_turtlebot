@@ -44,7 +44,7 @@ public:
 
 	cv::Mat Gauss(cv::Mat inputImage);
 
-	cv::Mat colorthresh(cv::Mat input,int dir);
+	int colorthresh(cv::Mat input);
 
 private:
 
