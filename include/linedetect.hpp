@@ -14,13 +14,13 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
 WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- *
- *
- *@copyright Copyright 2017 Sudarshan Raghunathan
- *@file linedetect.hpp
- *@author Sudarshan Raghunathan
- *@brief Header file for class linedetect
- */
+*
+*
+*@copyright Copyright 2017 Sudarshan Raghunathan
+*@file linedetect.hpp
+*@author Sudarshan Raghunathan
+*@brief Header file for class linedetect
+*/
 
 #pragma once
 
@@ -31,28 +31,36 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include "ros/ros.h"
 #include "line_follower_turtlebot/pos.h"
 
-
+/**
+*@brief Line Detect class contains all the functions for image procesing and direction publishing
+*/
 class LineDetect {
 public:
-	cv::Mat img;
-
-    cv::Mat img_filt;
-
-    int dir;
-
+    cv::Mat img; /// Input image in opencv matrix format
+    cv::Mat img_filt; /// Filtered image in opencv matrix format
+    int dir; /// Direction message to be published
+/**
+*@brief Callback used to subscribe to the image topic from the Turtlebot and convert to opencv image format
+*@param msg is the image message for ROS
+*@return none
+*/
 	void imageCallback(const sensor_msgs::ImageConstPtr& msg);
-
-	cv::Mat Gauss(cv::Mat inputImage);
-
+/**
+*@brief Function that applies Gaussian filter in the input image 
+*@param input is the image from the turtlebot in opencv matrix format
+*@return Mat of Gaussian filtered image in opencv matrix format
+*/
+	cv::Mat Gauss(cv::Mat input);
+/**
+*@brief Function to perform line detection using color thresholding,image masking and centroid detection to publish direction 
+*@param input is the Filtered input image in opencv matrix format
+*@return int direction which returns the direction the turtlebot should head in
+*/
 	int colorthresh(cv::Mat input);
 
 private:
-
 	cv::Scalar LowerYellow;
-
 	cv::Scalar UpperYellow;
-
 	cv::Mat img_hsv;
-
 	cv::Mat img_mask;
 };

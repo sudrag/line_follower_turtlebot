@@ -1,0 +1,80 @@
+\hypertarget{classturtlebot}{}\section{turtlebot Class Reference}
+\label{classturtlebot}\index{turtlebot@{turtlebot}}
+
+
+Class turtlebot subscribes to the directions published and publishes velocity commands.  
+
+
+
+
+{\ttfamily \#include $<$turtlebot.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classturtlebot_a086689860adb5ae052b5b89b17a79b7d}{dir\+\_\+sub} (line\+\_\+follower\+\_\+turtlebot\+::pos msg)
+\begin{DoxyCompactList}\small\item\em Callback used to subscribe to the direction message published by the Line detection node. \end{DoxyCompactList}\item 
+void \hyperlink{classturtlebot_a644fb3325e04d96fe171f8a773eba6b4}{vel\+\_\+cmd} (geometry\+\_\+msgs\+::\+Twist \&velocity, ros\+::\+Publisher \&pub, ros\+::\+Rate \&rate)
+\begin{DoxyCompactList}\small\item\em Function to publish velocity commands based on direction. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int {\bfseries dir}\hypertarget{classturtlebot_a1d9acb8a367d808a4d4c897deab8b20c}{}\label{classturtlebot_a1d9acb8a367d808a4d4c897deab8b20c}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class turtlebot subscribes to the directions published and publishes velocity commands. 
+
+\subsection{Member Function Documentation}
+\index{turtlebot@{turtlebot}!dir\+\_\+sub@{dir\+\_\+sub}}
+\index{dir\+\_\+sub@{dir\+\_\+sub}!turtlebot@{turtlebot}}
+\subsubsection[{\texorpdfstring{dir\+\_\+sub(line\+\_\+follower\+\_\+turtlebot\+::pos msg)}{dir_sub(line_follower_turtlebot::pos msg)}}]{\setlength{\rightskip}{0pt plus 5cm}void turtlebot\+::dir\+\_\+sub (
+\begin{DoxyParamCaption}
+\item[{line\+\_\+follower\+\_\+turtlebot\+::pos}]{msg}
+\end{DoxyParamCaption}
+)}\hypertarget{classturtlebot_a086689860adb5ae052b5b89b17a79b7d}{}\label{classturtlebot_a086689860adb5ae052b5b89b17a79b7d}
+
+
+Callback used to subscribe to the direction message published by the Line detection node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & is the custom message pos which publishes a direction int between 0 and 3 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\index{turtlebot@{turtlebot}!vel\+\_\+cmd@{vel\+\_\+cmd}}
+\index{vel\+\_\+cmd@{vel\+\_\+cmd}!turtlebot@{turtlebot}}
+\subsubsection[{\texorpdfstring{vel\+\_\+cmd(geometry\+\_\+msgs\+::\+Twist \&velocity, ros\+::\+Publisher \&pub, ros\+::\+Rate \&rate)}{vel_cmd(geometry_msgs::Twist &velocity, ros::Publisher &pub, ros::Rate &rate)}}]{\setlength{\rightskip}{0pt plus 5cm}void turtlebot\+::vel\+\_\+cmd (
+\begin{DoxyParamCaption}
+\item[{geometry\+\_\+msgs\+::\+Twist \&}]{velocity, }
+\item[{ros\+::\+Publisher \&}]{pub, }
+\item[{ros\+::\+Rate \&}]{rate}
+\end{DoxyParamCaption}
+)}\hypertarget{classturtlebot_a644fb3325e04d96fe171f8a773eba6b4}{}\label{classturtlebot_a644fb3325e04d96fe171f8a773eba6b4}
+
+
+Function to publish velocity commands based on direction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em velocity} & is the twist \\
+\hline
+{\em pub} & is used to publish the velocity commands to the turtlebot \\
+\hline
+{\em rate} & is the ros loop rate for publishing the commands \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/sudartion/catkin\+\_\+ws/src/line\+\_\+follower\+\_\+turtlebot/include/\hyperlink{turtlebot_8hpp}{turtlebot.\+hpp}\item 
+/home/sudartion/catkin\+\_\+ws/src/line\+\_\+follower\+\_\+turtlebot/src/\hyperlink{turtlebot_8cpp}{turtlebot.\+cpp}\end{DoxyCompactItemize}

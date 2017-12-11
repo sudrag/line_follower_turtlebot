@@ -1,0 +1,101 @@
+\hypertarget{classLineDetect}{}\section{Line\+Detect Class Reference}
+\label{classLineDetect}\index{Line\+Detect@{Line\+Detect}}
+
+
+Line Detect class contains all the functions for image procesing and direction publishing.  
+
+
+
+
+{\ttfamily \#include $<$linedetect.\+hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classLineDetect_a55952d3dc713611f47293aa16d9d1459}{image\+Callback} (const sensor\+\_\+msgs\+::\+Image\+Const\+Ptr \&msg)
+\begin{DoxyCompactList}\small\item\em Direction message to be published. \end{DoxyCompactList}\item 
+cv\+::\+Mat \hyperlink{classLineDetect_a95f915b8096799a874d5cec002f3dca3}{Gauss} (cv\+::\+Mat input)
+\begin{DoxyCompactList}\small\item\em Function that applies Gaussian filter in the input image. \end{DoxyCompactList}\item 
+int \hyperlink{classLineDetect_a35170d9af8b1baab0587b87475c94634}{colorthresh} (cv\+::\+Mat input)
+\begin{DoxyCompactList}\small\item\em Function to perform line detection using color thresholding,image masking and centroid detection to publish direction. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+cv\+::\+Mat {\bfseries img}\hypertarget{classLineDetect_a3b07274ae56a9f967a7b65d9650a057b}{}\label{classLineDetect_a3b07274ae56a9f967a7b65d9650a057b}
+
+\item 
+cv\+::\+Mat \hyperlink{classLineDetect_a9f63814c1f656cab53bd339d1eab70bc}{img\+\_\+filt}\hypertarget{classLineDetect_a9f63814c1f656cab53bd339d1eab70bc}{}\label{classLineDetect_a9f63814c1f656cab53bd339d1eab70bc}
+
+\begin{DoxyCompactList}\small\item\em Input image in opencv matrix format. \end{DoxyCompactList}\item 
+int \hyperlink{classLineDetect_a4745d206a2038e40341112670d0052d6}{dir}\hypertarget{classLineDetect_a4745d206a2038e40341112670d0052d6}{}\label{classLineDetect_a4745d206a2038e40341112670d0052d6}
+
+\begin{DoxyCompactList}\small\item\em Filtered image in opencv matrix format. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Line Detect class contains all the functions for image procesing and direction publishing. 
+
+\subsection{Member Function Documentation}
+\index{Line\+Detect@{Line\+Detect}!colorthresh@{colorthresh}}
+\index{colorthresh@{colorthresh}!Line\+Detect@{Line\+Detect}}
+\subsubsection[{\texorpdfstring{colorthresh(cv\+::\+Mat input)}{colorthresh(cv::Mat input)}}]{\setlength{\rightskip}{0pt plus 5cm}int Line\+Detect\+::colorthresh (
+\begin{DoxyParamCaption}
+\item[{cv\+::\+Mat}]{input}
+\end{DoxyParamCaption}
+)}\hypertarget{classLineDetect_a35170d9af8b1baab0587b87475c94634}{}\label{classLineDetect_a35170d9af8b1baab0587b87475c94634}
+
+
+Function to perform line detection using color thresholding,image masking and centroid detection to publish direction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & is the Filtered input image in opencv matrix format \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int direction which returns the direction the turtlebot should head in 
+\end{DoxyReturn}
+\index{Line\+Detect@{Line\+Detect}!Gauss@{Gauss}}
+\index{Gauss@{Gauss}!Line\+Detect@{Line\+Detect}}
+\subsubsection[{\texorpdfstring{Gauss(cv\+::\+Mat input)}{Gauss(cv::Mat input)}}]{\setlength{\rightskip}{0pt plus 5cm}cv\+::\+Mat Line\+Detect\+::\+Gauss (
+\begin{DoxyParamCaption}
+\item[{cv\+::\+Mat}]{input}
+\end{DoxyParamCaption}
+)}\hypertarget{classLineDetect_a95f915b8096799a874d5cec002f3dca3}{}\label{classLineDetect_a95f915b8096799a874d5cec002f3dca3}
+
+
+Function that applies Gaussian filter in the input image. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & is the image from the turtlebot in opencv matrix format \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Mat of Gaussian filtered image in opencv matrix format 
+\end{DoxyReturn}
+\index{Line\+Detect@{Line\+Detect}!image\+Callback@{image\+Callback}}
+\index{image\+Callback@{image\+Callback}!Line\+Detect@{Line\+Detect}}
+\subsubsection[{\texorpdfstring{image\+Callback(const sensor\+\_\+msgs\+::\+Image\+Const\+Ptr \&msg)}{imageCallback(const sensor_msgs::ImageConstPtr &msg)}}]{\setlength{\rightskip}{0pt plus 5cm}void Line\+Detect\+::image\+Callback (
+\begin{DoxyParamCaption}
+\item[{const sensor\+\_\+msgs\+::\+Image\+Const\+Ptr \&}]{msg}
+\end{DoxyParamCaption}
+)}\hypertarget{classLineDetect_a55952d3dc713611f47293aa16d9d1459}{}\label{classLineDetect_a55952d3dc713611f47293aa16d9d1459}
+
+
+Direction message to be published. 
+
+Callback used to subscribe to the image topic from the Turtlebot and convert to opencv image format 
+\begin{DoxyParams}{Parameters}
+{\em msg} & is the image message for R\+OS \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/sudartion/catkin\+\_\+ws/src/line\+\_\+follower\+\_\+turtlebot/include/\hyperlink{linedetect_8hpp}{linedetect.\+hpp}\item 
+/home/sudartion/catkin\+\_\+ws/src/line\+\_\+follower\+\_\+turtlebot/src/\hyperlink{linedetect_8cpp}{linedetect.\+cpp}\end{DoxyCompactItemize}

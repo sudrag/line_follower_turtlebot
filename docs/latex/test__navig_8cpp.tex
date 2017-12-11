@@ -1,0 +1,120 @@
+\hypertarget{test__navig_8cpp}{}\section{/home/sudartion/catkin\+\_\+ws/src/line\+\_\+follower\+\_\+turtlebot/test/test\+\_\+navig.cpp File Reference}
+\label{test__navig_8cpp}\index{/home/sudartion/catkin\+\_\+ws/src/line\+\_\+follower\+\_\+turtlebot/test/test\+\_\+navig.\+cpp@{/home/sudartion/catkin\+\_\+ws/src/line\+\_\+follower\+\_\+turtlebot/test/test\+\_\+navig.\+cpp}}
+
+
+Unit Test for all the functions in the turtlebot navigation class.  
+
+
+{\ttfamily \#include $<$cstdlib$>$}\\*
+{\ttfamily \#include $<$string$>$}\\*
+{\ttfamily \#include $<$ros/package.\+h$>$}\\*
+{\ttfamily \#include $<$sstream$>$}\\*
+{\ttfamily \#include $<$opencv2/highgui/highgui.\+hpp$>$}\\*
+{\ttfamily \#include $<$cv\+\_\+bridge/cv\+\_\+bridge.\+h$>$}\\*
+{\ttfamily \#include $<$gtest/gtest.\+h$>$}\\*
+{\ttfamily \#include $<$boost/thread.\+hpp$>$}\\*
+{\ttfamily \#include \char`\"{}opencv2/opencv.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}ros/ros.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}ros/console.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}turtlebot.\+hpp\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}line\+\_\+follower\+\_\+turtlebot/pos.\+h\char`\"{}}\\*
+Include dependency graph for test\+\_\+navig.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{test__navig_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{test__navig_8cpp_a3298bf3dc9e8eeece37641ff08ff6dcb}{ang\+\_\+vel} (int direction)
+\begin{DoxyCompactList}\small\item\em Testing if detection works accurately and publishes straight accurately. \end{DoxyCompactList}\item 
+double \hyperlink{test__navig_8cpp_ab648b8839cb39d17588b2aaf43bdf1d2}{linear\+\_\+vel} (int direction)
+\begin{DoxyCompactList}\small\item\em Testing if detection works accurately and publishes straight accurately. \end{DoxyCompactList}\item 
+void \hyperlink{test__navig_8cpp_abee919b3b96d4d58ae9a6c4952b67c22}{process\+Thread} (void)\hypertarget{test__navig_8cpp_abee919b3b96d4d58ae9a6c4952b67c22}{}\label{test__navig_8cpp_abee919b3b96d4d58ae9a6c4952b67c22}
+
+\begin{DoxyCompactList}\small\item\em Function to spin the callbacks at a specific rate. \end{DoxyCompactList}\item 
+\hyperlink{test__navig_8cpp_a16f601553263f11e30380d1c429c2b98}{T\+E\+ST} (Test\+R\+OS, Test\+Pub\+Sub)\hypertarget{test__navig_8cpp_a16f601553263f11e30380d1c429c2b98}{}\label{test__navig_8cpp_a16f601553263f11e30380d1c429c2b98}
+
+\begin{DoxyCompactList}\small\item\em Testing if message subscriber is working properly. \end{DoxyCompactList}\item 
+\hyperlink{test__navig_8cpp_adabbc7231644472f24d8056fd42b2d5a}{T\+E\+ST} (Test\+Velocity, Teststraight\+\_\+vel)\hypertarget{test__navig_8cpp_adabbc7231644472f24d8056fd42b2d5a}{}\label{test__navig_8cpp_adabbc7231644472f24d8056fd42b2d5a}
+
+\begin{DoxyCompactList}\small\item\em Testing if velocity published is for moving straight. \end{DoxyCompactList}\item 
+\hyperlink{test__navig_8cpp_a6246853d1fb891135e2cfc3591b1d064}{T\+E\+ST} (Test\+Directions, Testleft\+\_\+vel)\hypertarget{test__navig_8cpp_a6246853d1fb891135e2cfc3591b1d064}{}\label{test__navig_8cpp_a6246853d1fb891135e2cfc3591b1d064}
+
+\begin{DoxyCompactList}\small\item\em Testing if velocity published is for turning left. \end{DoxyCompactList}\item 
+\hyperlink{test__navig_8cpp_ae8fdc3f364b5ed04b991184ea8aacae0}{T\+E\+ST} (Test\+Directions, Testright\+\_\+vel)\hypertarget{test__navig_8cpp_ae8fdc3f364b5ed04b991184ea8aacae0}{}\label{test__navig_8cpp_ae8fdc3f364b5ed04b991184ea8aacae0}
+
+\begin{DoxyCompactList}\small\item\em Testing if velocity published is for turning right. \end{DoxyCompactList}\item 
+\hyperlink{test__navig_8cpp_af6f3ba161b8fc49e30c037b43c4b76ec}{T\+E\+ST} (Test\+Directions, Teststop\+\_\+vel)\hypertarget{test__navig_8cpp_af6f3ba161b8fc49e30c037b43c4b76ec}{}\label{test__navig_8cpp_af6f3ba161b8fc49e30c037b43c4b76ec}
+
+\begin{DoxyCompactList}\small\item\em Testing if velocity published is for stopping. \end{DoxyCompactList}\item 
+int \hyperlink{test__navig_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\begin{DoxyCompactList}\small\item\em Function to run all the tests for the navigation node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Unit Test for all the functions in the turtlebot navigation class. 
+
+M\+IT License Copyright (c) 2017 Sudarshan Raghunathan Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \char`\"{}\+Software\char`\"{}), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions\+: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. T\+HE S\+O\+F\+T\+W\+A\+RE IS P\+R\+O\+V\+I\+D\+ED \char`\"{}\+A\+S I\+S\char`\"{}, W\+I\+T\+H\+O\+UT W\+A\+R\+R\+A\+N\+TY OF A\+NY K\+I\+ND, E\+X\+P\+R\+E\+SS OR I\+M\+P\+L\+I\+ED, I\+N\+C\+L\+U\+D\+I\+NG B\+UT N\+OT L\+I\+M\+I\+T\+ED TO T\+HE W\+A\+R\+R\+A\+N\+T\+I\+ES OF M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+TY, F\+I\+T\+N\+E\+SS F\+OR A P\+A\+R\+T\+I\+C\+U\+L\+AR P\+U\+R\+P\+O\+SE A\+ND N\+O\+N\+I\+N\+F\+R\+I\+N\+G\+E\+M\+E\+NT. IN NO E\+V\+E\+NT S\+H\+A\+LL T\+HE A\+U\+T\+H\+O\+RS OR C\+O\+P\+Y\+R\+I\+G\+HT H\+O\+L\+D\+E\+RS BE L\+I\+A\+B\+LE F\+OR A\+NY C\+L\+A\+IM, D\+A\+M\+A\+G\+ES OR O\+T\+H\+ER L\+I\+A\+B\+I\+L\+I\+TY, W\+H\+E\+T\+H\+ER IN AN A\+C\+T\+I\+ON OF C\+O\+N\+T\+R\+A\+CT, T\+O\+RT OR O\+T\+H\+E\+R\+W\+I\+SE, A\+R\+I\+S\+I\+NG F\+R\+OM, O\+UT OF OR IN C\+O\+N\+N\+E\+C\+T\+I\+ON W\+I\+TH T\+HE S\+O\+F\+T\+W\+A\+RE OR T\+HE U\+SE OR O\+T\+H\+ER D\+E\+A\+L\+I\+N\+GS IN T\+HE S\+O\+F\+T\+W\+A\+RE.
+
+\begin{DoxyCopyright}{Copyright}
+Copyright 2017 Sudarshan Raghunathan
+\end{DoxyCopyright}
+\begin{DoxyAuthor}{Author}
+Sudarshan Raghunathan 
+\end{DoxyAuthor}
+
+
+\subsection{Function Documentation}
+\index{test\+\_\+navig.\+cpp@{test\+\_\+navig.\+cpp}!ang\+\_\+vel@{ang\+\_\+vel}}
+\index{ang\+\_\+vel@{ang\+\_\+vel}!test\+\_\+navig.\+cpp@{test\+\_\+navig.\+cpp}}
+\subsubsection[{\texorpdfstring{ang\+\_\+vel(int direction)}{ang_vel(int direction)}}]{\setlength{\rightskip}{0pt plus 5cm}double ang\+\_\+vel (
+\begin{DoxyParamCaption}
+\item[{int}]{direction}
+\end{DoxyParamCaption}
+)}\hypertarget{test__navig_8cpp_a3298bf3dc9e8eeece37641ff08ff6dcb}{}\label{test__navig_8cpp_a3298bf3dc9e8eeece37641ff08ff6dcb}
+
+
+Testing if detection works accurately and publishes straight accurately. 
+
+\begin{DoxyReturn}{Returns}
+int dir which is the direction to move in 
+\end{DoxyReturn}
+\index{test\+\_\+navig.\+cpp@{test\+\_\+navig.\+cpp}!linear\+\_\+vel@{linear\+\_\+vel}}
+\index{linear\+\_\+vel@{linear\+\_\+vel}!test\+\_\+navig.\+cpp@{test\+\_\+navig.\+cpp}}
+\subsubsection[{\texorpdfstring{linear\+\_\+vel(int direction)}{linear_vel(int direction)}}]{\setlength{\rightskip}{0pt plus 5cm}double linear\+\_\+vel (
+\begin{DoxyParamCaption}
+\item[{int}]{direction}
+\end{DoxyParamCaption}
+)}\hypertarget{test__navig_8cpp_ab648b8839cb39d17588b2aaf43bdf1d2}{}\label{test__navig_8cpp_ab648b8839cb39d17588b2aaf43bdf1d2}
+
+
+Testing if detection works accurately and publishes straight accurately. 
+
+\begin{DoxyReturn}{Returns}
+int dir which is the direction to move in 
+\end{DoxyReturn}
+\index{test\+\_\+navig.\+cpp@{test\+\_\+navig.\+cpp}!main@{main}}
+\index{main@{main}!test\+\_\+navig.\+cpp@{test\+\_\+navig.\+cpp}}
+\subsubsection[{\texorpdfstring{main(int argc, char $\ast$$\ast$argv)}{main(int argc, char **argv)}}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}\hypertarget{test__navig_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{}\label{test__navig_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}
+
+
+Function to run all the tests for the navigation node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & is the number of arguments of the main function \\
+\hline
+{\em argv} & is the array of arugments \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+result of the tests 
+\end{DoxyReturn}
