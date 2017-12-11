@@ -60,6 +60,18 @@ int stop() {
     }
 }
 
+bool gauss() {
+    ros::NodeHandle n;
+    LineDetect det;
+    
+    cv::String im_path3 = "./test_images/stop.png";
+    det.img = cv::imread(im_path3);
+    cv::Size im_size = det.img.size();
+    det.img_filt = det.Gauss(det.img);
+    cv::Size imfilt_size = det.img_filt.size();
+    if (im_size == imfilt_size)
+        return true;
+}
 
 TEST(TestDirections, Teststraight) {
     int direction = drive_straight();
@@ -79,6 +91,10 @@ TEST(TestDirections, Testright ) {
 TEST(TestDirections, Teststop ) {
     int direction = stop();
     EXPECT_EQ(3, direction);
+}
+
+TEST (TestDetFunc , TestGauss) {
+    EXPECT_EQ (true , gauss());
 }
 
 int main(int argc, char **argv) {

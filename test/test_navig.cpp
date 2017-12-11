@@ -1,9 +1,12 @@
 
 #include <cstdlib>
 #include <string>
+#include <ros/package.h>
+#include <sstream>
 #include <opencv2/highgui/highgui.hpp>
 #include <cv_bridge/cv_bridge.h>
 #include <gtest/gtest.h>
+#include <boost/thread.hpp>
 #include "opencv2/opencv.hpp"
 #include "ros/ros.h"
 #include "ros/console.h"
@@ -19,7 +22,7 @@ double ang_vel(int direction) {
     ("/cmd_vel_mux/input/teleop", 1000);
 
     bot.dir=direction;
-    ros::Rate rate(100);
+    ros::Rate rate(10);
     ros::spinOnce();
     bot.vel_cmd(velocity, pub, rate);
     rate.sleep();
@@ -41,6 +44,38 @@ double linear_vel(int direction){
     return velocity.linear.x ;
 }
 
+void processThread(void) {
+    ros::Rate rate(10);
+    while (ros::ok()) {
+        ros::spinOnce();
+        rate.sleep();
+    }
+}
+
+
+
+TEST(TestROS, TestPubSub)
+{
+  ros::NodeHandle nh;
+  geometry_msgs::Twist velocity;
+  ros::Rate rate(10);
+  turtlebot bot;
+  ros::Publisher pub = nh.advertise<line_follower_turtlebot::pos>
+   ("direction",1000);
+  ros::Subscriber sub = nh.subscribe("/direction", 
+        1, &turtlebot::dir_sub, &bot);
+
+    line_follower_turtlebot::pos msg;
+    msg.direction = 0;
+    pub.publish(msg);
+
+    ros::spinOnce();
+    rate.sleep();
+
+    EXPECT_EQ(1, sub.getNumPublishers());
+    EXPECT_EQ(1, pub.getNumSubscribers());
+    EXPECT_EQ(msg.direction,bot.dir);
+}
 
 
 TEST(TestVelocity, Teststraight_vel) {
@@ -73,6 +108,11 @@ TEST(TestDirections, Teststop_vel) {
 
 int main(int argc, char **argv) {
     ros::init(argc, argv, "test_velocity");
-    testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
+    testing::InitGoogleTest(&argc, argv);  
+    ros::NodeHandle nh;
+    boost::thread th(processThread);
+    int test_flag =RUN_ALL_TESTS();
+    ros::shutdown();
+    th.join();
+    return test_flag;
 }
