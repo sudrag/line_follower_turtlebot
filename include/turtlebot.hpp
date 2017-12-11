@@ -32,15 +32,14 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 *@brief Class turtlebot subscribes to the directions published and publishes velocity commands
 */
 class turtlebot {
-public:
-	
-    int dir; /// Direction message to read published directions
+ public:
+    int dir;  /// Direction message to read published directions
 /**
 *@brief Callback used to subscribe to the direction message published by the Line detection node
 *@param msg is the custom message pos which publishes a direction int between 0 and 3
 *@return none
 */
-	void dir_sub(line_follower_turtlebot::pos msg);
+    void dir_sub(line_follower_turtlebot::pos msg);
 /**
 *@brief Function to publish velocity commands based on direction
 *@param velocity is the twist 
@@ -48,5 +47,6 @@ public:
 *@param rate is the ros loop rate for publishing the commands
 *@return none
 */
-	void vel_cmd(geometry_msgs::Twist &velocity, ros::Publisher &pub, ros::Rate &rate);
+    void vel_cmd(geometry_msgs::Twist &velocity,
+     ros::Publisher &pub, ros::Rate &rate);
 };

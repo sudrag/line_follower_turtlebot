@@ -1,0 +1,13 @@
+Done processing ./test/test_navig.cpp
+Done processing ./test/test_detect.cpp
+Done processing ./src/detect.cpp
+Done processing ./src/turtlebot.cpp
+Done processing ./src/linedetect.cpp
+Done processing ./src/motion_node.cpp
+Done processing ./include/linedetect.hpp
+./include/turtlebot.hpp:50:  Is this a non-const reference? If so, make const or use a pointer: geometry_msgs::Twist &velocity  [runtime/references] [2]
+./include/turtlebot.hpp:51:  Is this a non-const reference? If so, make const or use a pointer: ros::Publisher &pub  [runtime/references] [2]
+./include/turtlebot.hpp:51:  Is this a non-const reference? If so, make const or use a pointer: ros::Rate &rate  [runtime/references] [2]
+Done processing ./include/turtlebot.hpp
+Total errors found: 3
+

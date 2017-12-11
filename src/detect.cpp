@@ -21,10 +21,10 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *@author Sudarshan Raghunathan
  *@brief  Ros Nod to subscribe to turtlebot images and perform image processing to detect line
  */
+#include <cv_bridge/cv_bridge.h>
 #include <cstdlib>
 #include <string>
 #include <opencv2/highgui/highgui.hpp>
-#include <cv_bridge/cv_bridge.h>
 #include "opencv2/opencv.hpp"
 #include "ros/ros.h"
 #include "ros/console.h"
@@ -39,31 +39,29 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 int main(int argc, char **argv) {
-	//Initializing node and object
-	ros::init(argc, argv, "detection");
-	ros::NodeHandle n;
-	LineDetect det;
-	//Creating Publisher and subscriber
-	ros::Subscriber sub = n.subscribe("/camera/rgb/image_raw", 
-		1, &LineDetect::imageCallback, &det);
+    // Initializing node and object
+    ros::init(argc, argv, "detection");
+    ros::NodeHandle n;
+    LineDetect det;
+    // Creating Publisher and subscriber
+    ros::Subscriber sub = n.subscribe("/camera/rgb/image_raw",
+        1, &LineDetect::imageCallback, &det);
 
-	ros::Publisher dirPub = n.advertise<line_follower_turtlebot::pos>("direction", 1);
-		line_follower_turtlebot::pos msg;
+    ros::Publisher dirPub = n.advertise<
+    line_follower_turtlebot::pos>("direction", 1);
+        line_follower_turtlebot::pos msg;
 
-
-	while (ros::ok()) {
-		if (!det.img.empty()) {
-			//Perform image processing
-			det.img_filt = det.Gauss(det.img);	
-			msg.direction=det.colorthresh(det.img_filt);
-			//Publish direction message
-			dirPub.publish(msg);
-			}
-		ros::spinOnce();
-	}
-	//Closing image viewer
-	cv::destroyWindow("view2");
-	cv::destroyWindow("view3");
-
-
+    while (ros::ok()) {
+        if (!det.img.empty()) {
+            // Perform image processing
+            det.img_filt = det.Gauss(det.img);
+            msg.direction = det.colorthresh(det.img_filt);
+            // Publish direction message
+            dirPub.publish(msg);
+            }
+        ros::spinOnce();
+    }
+    // Closing image viewer
+    cv::destroyWindow("view2");
+    cv::destroyWindow("view3");
 }

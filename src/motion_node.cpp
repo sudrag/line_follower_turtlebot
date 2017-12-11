@@ -21,10 +21,10 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 *@author Sudarshan Raghunathan
 *@brief  Ros node to read direction to move in and publish velocity to turtlebot
 */
+#include <cv_bridge/cv_bridge.h>
 #include <cstdlib>
 #include <string>
 #include <opencv2/highgui/highgui.hpp>
-#include <cv_bridge/cv_bridge.h>
 #include "opencv2/opencv.hpp"
 #include "ros/ros.h"
 #include "ros/console.h"
@@ -39,22 +39,22 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 *@return 0
 */
 int main(int argc, char **argv) {
-	//Initializing node and object
-	ros::init(argc, argv, "Velocity");
-	ros::NodeHandle n;
-	turtlebot bot;
-	geometry_msgs::Twist velocity;
-	//Creating subscriber and publisher
-	ros::Subscriber sub = n.subscribe("/direction", 
-		1, &turtlebot::dir_sub, &bot);
+    // Initializing node and object
+    ros::init(argc, argv, "Velocity");
+    ros::NodeHandle n;
+    turtlebot bot;
+    geometry_msgs::Twist velocity;
+    // Creating subscriber and publisher
+    ros::Subscriber sub = n.subscribe("/direction",
+        1, &turtlebot::dir_sub, &bot);
     ros::Publisher pub = n.advertise<geometry_msgs::Twist>
         ("/cmd_vel_mux/input/teleop", 1000);
     ros::Rate rate(10);
-	while (ros::ok()) {
-		ros::spinOnce();
-		//Publish velocity commands to turtlebot
-		bot.vel_cmd(velocity, pub, rate);
-		rate.sleep();
-	}
-	return 0;
+    while (ros::ok()) {
+        ros::spinOnce();
+        // Publish velocity commands to turtlebot
+        bot.vel_cmd(velocity, pub, rate);
+        rate.sleep();
+    }
+    return 0;
 }
