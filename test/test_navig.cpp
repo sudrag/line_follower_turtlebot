@@ -118,8 +118,8 @@ TEST(TestVelocity, Teststraight_vel) {
 TEST(TestDirections, Testleft_vel) {
     double rot = ang_vel(0);
     double trans = linear_vel(0);
-    EXPECT_EQ(0.15, rot);
-    EXPECT_EQ(0.1, trans);
+    EXPECT_EQ(0.2, rot);
+    EXPECT_EQ(0.08, trans);
 }
 /**
 *@brief Testing if velocity published is for turning right 
@@ -127,8 +127,8 @@ TEST(TestDirections, Testleft_vel) {
 TEST(TestDirections, Testright_vel) {
     double rot = ang_vel(2);
     double trans = linear_vel(2);
-    EXPECT_EQ(-0.15, rot);
-    EXPECT_EQ(0.1, trans);
+    EXPECT_EQ(-0.2, rot);
+    EXPECT_EQ(0.08, trans);
 }
 /**
 *@brief Testing if velocity published is for stopping 

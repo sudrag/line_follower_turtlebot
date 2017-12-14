@@ -36,8 +36,8 @@ void turtlebot::vel_cmd(geometry_msgs::Twist &velocity,
  ros::Publisher &pub, ros::Rate &rate) {
     // If direction is left
     if (turtlebot::dir == 0) {
-        velocity.linear.x = 0.1;
-        velocity.angular.z = 0.15;
+        velocity.linear.x = 0.08;
+        velocity.angular.z = 0.2;
         pub.publish(velocity);
         rate.sleep();
         ROS_INFO_STREAM("Turning Left");
@@ -52,8 +52,8 @@ void turtlebot::vel_cmd(geometry_msgs::Twist &velocity,
     }
     // If direction is right
     if (turtlebot::dir == 2) {
-        velocity.linear.x = 0.1;
-        velocity.angular.z = -0.15;
+        velocity.linear.x = 0.08;
+        velocity.angular.z = -0.2;
         pub.publish(velocity);
         rate.sleep();
         ROS_INFO_STREAM("Turning Right");

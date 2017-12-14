@@ -62,6 +62,5 @@ int main(int argc, char **argv) {
         ros::spinOnce();
     }
     // Closing image viewer
-    cv::destroyWindow("view2");
-    cv::destroyWindow("view3");
+    cv::destroyWindow("Turtlebot View");
 }
