@@ -16,3 +16,7 @@ env:
 
 script:
   - curl -s "$( echo "$remote_shell_script" | sed 's/#/%23/g' )" | bash -x /dev/stdin "$toolset_branch" $server_type $used_modules
+  - ros -s prove -s cl-coveralls
+        -e '(or (coveralls:with-coveralls (:exclude (list "t"))
+                  (prove:run :quri-test))
+                (uiop:quit -1))'
