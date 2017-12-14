@@ -63,7 +63,7 @@ int LineDetect::colorthresh(cv::Mat input) {
   LineDetect::UpperYellow = {30, 255, 255};
   cv::inRange(LineDetect::img_hsv, LowerYellow,
    UpperYellow, LineDetect::img_mask);
-  img_mask(cv::Rect(0, 0, w, 0.5*h)) = 0;
+  img_mask(cv::Rect(0, 0, w, 0.8*h)) = 0;
   // Find contours for better visualization
   cv::findContours(LineDetect::img_mask, v, CV_RETR_LIST, CV_CHAIN_APPROX_NONE);
   // If contours exist add a bounding
@@ -94,7 +94,6 @@ int LineDetect::colorthresh(cv::Mat input) {
     CV_FONT_HERSHEY_COMPLEX, 1, CV_RGB(255, 0, 0));
   }
   // Mask image to limit the future turns affecting the output
-  img_mask(cv::Rect(0, 0, w, 0.8*h)) = 0;
   img_mask(cv::Rect(0.7*w, 0, 0.3*w, h)) = 0;
   img_mask(cv::Rect(0, 0, 0.3*w, h)) = 0;
   // Perform centroid detection of line
@@ -117,7 +116,7 @@ int LineDetect::colorthresh(cv::Mat input) {
   } else {
     LineDetect::dir = 1;
   }
-  // Stop if no line detected
+  // Search if no line detected
   if (count == 0) {
     LineDetect::dir = 3;
   }

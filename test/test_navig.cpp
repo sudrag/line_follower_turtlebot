@@ -44,7 +44,7 @@ double ang_vel(int direction) {
     turtlebot bot;
     geometry_msgs::Twist velocity;
     ros::Publisher pub = n.advertise<geometry_msgs::Twist>
-    ("/cmd_vel_mux/input/teleop", 1000);
+    ("/cmd_vel_mux/input/teleop", 10);
     bot.dir = direction;
     ros::Rate rate(10);
     ros::spinOnce();
@@ -61,7 +61,7 @@ double linear_vel(int direction) {
     turtlebot bot;
     geometry_msgs::Twist velocity;
     ros::Publisher pub = n.advertise<geometry_msgs::Twist>
-    ("/cmd_vel_mux/input/teleop", 1000);
+    ("/cmd_vel_mux/input/teleop", 10);
 
     bot.dir = direction;
     ros::Rate rate(100);
@@ -110,7 +110,7 @@ TEST(TestVelocity, Teststraight_vel) {
     double rot = ang_vel(1);
     double trans = linear_vel(1);
     EXPECT_EQ(0, rot);
-    EXPECT_EQ(0.2, trans);
+    EXPECT_EQ(0.15, trans);
 }
 /**
 *@brief Testing if velocity published is for turning left 
@@ -118,8 +118,8 @@ TEST(TestVelocity, Teststraight_vel) {
 TEST(TestDirections, Testleft_vel) {
     double rot = ang_vel(0);
     double trans = linear_vel(0);
-    EXPECT_EQ(0.2, rot);
-    EXPECT_EQ(0.08, trans);
+    EXPECT_EQ(0.15, rot);
+    EXPECT_EQ(0.1, trans);
 }
 /**
 *@brief Testing if velocity published is for turning right 
@@ -127,16 +127,16 @@ TEST(TestDirections, Testleft_vel) {
 TEST(TestDirections, Testright_vel) {
     double rot = ang_vel(2);
     double trans = linear_vel(2);
-    EXPECT_EQ(-0.2, rot);
-    EXPECT_EQ(0.08, trans);
+    EXPECT_EQ(-0.15, rot);
+    EXPECT_EQ(0.1, trans);
 }
 /**
-*@brief Testing if velocity published is for stopping 
+*@brief Testing if velocity published is for searching 
 */
-TEST(TestDirections, Teststop_vel) {
+TEST(TestDirections, Testsearch_vel) {
     double rot = ang_vel(3);
     double trans = linear_vel(3);
-    EXPECT_EQ(0, rot);
+    EXPECT_EQ(0.25, rot);
     EXPECT_EQ(0, trans);
 }
 /**

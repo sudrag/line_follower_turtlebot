@@ -138,10 +138,10 @@ TEST(TestDirections, Testright ) {
 }
 
 /**
-*@brief Testing if stop command is published 
+*@brief Testing if search command is published 
 */
 
-TEST(TestDirections, Teststop ) {
+TEST(TestDirections, Testsearch ) {
     int direction = stop();
     EXPECT_EQ(3, direction);
 }
