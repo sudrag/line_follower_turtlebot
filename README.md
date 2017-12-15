@@ -83,6 +83,7 @@ To run the gtest based unit tests for the classes in the project , run the follo
 
 ```
 cd ~/catkin_ws
+cp -R ~/catkin_ws/src/line_follower_turtlebot/test_images/ ~/catkin_ws/devel/lib/line_follower_turtlebot/
 source devel/setup.bash
 catkin_make run_tests
 ```
@@ -96,7 +97,7 @@ The current coverage for the project is 98.4% . To generate the html file to vie
 ```
 cd ~/catkin_ws/build
 lcov --directory . --capture --output-file coverage.info
-lcov --remove coverage.info '/opt/*' '/usr/*' '*/devel/*' '*test_*' '*_test*' --output-file coverage.info
+sudo lcov --remove coverage.info '/opt/*' '/usr/*' '*/devel/*' '*test_*' '*_test*' --output-file coverage.info
 lcov --list coverage.info
 ```
 This will list the coverage info in the terminal. For better visualization it is recommended to generate an html file using :
@@ -118,7 +119,7 @@ doxygen -g <config_file_name>
 Make the following changes inside the configuration file
 
 > PROJECT_NAME = 'your project name'   
-> INPUT = ../app ../include ../test    
+> INPUT = ../src ../include ../test    
 
 The doxygen documents can be generated in the current directory (unless output directory is modified in the config file) using:
 ```
