@@ -1,15 +1,23 @@
 # Line Follower TurtleBot
-[![Build Status](https://travis-ci.org/sudrag/Line-Follower-TurtleBot.svg?branch=master)](https://travis-ci.org/sudrag/Line-Follower-TurtleBot)
+[![Build Status](https://travis-ci.org/sudrag/line_follower_turtlebot.svg?branch=master)](https://travis-ci.org/sudrag/line_follower_turtlebot)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Coverage Status](https://coveralls.io/repos/github/sudrag/Line-Follower-TurtleBot/badge.svg?branch=master)](https://coveralls.io/github/sudrag/Line-Follower-TurtleBot?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/sudrag/line_follower_turtlebot/badge.svg?branch=master)](https://coveralls.io/github/sudrag/line_follower_turtlebot?branch=master)
 
 ## Overview
-This project uses ROS to demonstrate a simple line following Turtlebot in a simulated Gazebo environment . Line following is an easy to design application for a robot as all it requires is a robot with a camera and some tape. However this can be used to create complex high level models using multiple robots and multiple paths. This can be implemented in industries and shop floors for material handling and distribution. These robots can be made to follow these paths in periodic intervals autonoumously and hence automate the function of the entire material handling system in a highly cost efficient way. This is the project that has been proposed to ACME robotics and the process has been explained below
+This project uses ROS to demonstrate a simple line following Turtlebot in a simulated Gazebo environment . Line following is an easy to design application for a robot as all it requires is a robot with a camera and some tape. However this can be used to create complex high level models using multiple robots and multiple paths. This can be implemented in industries and shop floors for material handling and distribution. These robots can be made to follow these paths in periodic intervals autonomously and hence automate the function of the entire material handling system in a highly cost efficient way. This is the project that has been proposed to ACME robotics and the process has been explained below
 
 ## Procedure
-This project primarily uses two main classes , one for the detection of the line and one for the navigation of the robot to do so. The detection class primarily obtains an image from the turtlebot in the simulated environment , performs color thresholding , masking and centroid detection to communicate the required direction for the robot to move in . The direction is determined based on the position of the centroid of the detected line with respect to the turtlebot .The direction commands are either move forward , turn left , turn right or search i.e spin on spot when no line is detected. The direction published by the detection class is used by the navigation class to publish velocity commands to the Turtlebot and successfully follow the line throughout the environment. Once the Turtlebot reaches the end of the path , it searches for a line to follow again by rotating on spot. This way it finds the same path it took and returns back to the starting point. This way travelling between these points is performed continuously and can be extremely beneficial in any material handling applications. The procedure follows the algorithm shown in the picture below.
+Initially a Gazebo world was created containing some walls and a path for the turtlebot to follow. The world can be seen below:
+
+![alt text](Results/readme_images/world.png "Gazebo world")
+
+This project primarily uses two main classes , one for the detection of the line and one for the navigation of the robot to do so. The detection class first and foremost obtains an image from the turtlebot in the simulated environment , performs color thresholding , masking and centroid detection to communicate the required direction for the robot to move in . The direction is determined based on the position of the centroid of the detected line with respect to the turtlebot .The direction commands are either move forward , turn left , turn right or search i.e spin on spot when no line is detected. The direction published by the detection class is used by the navigation class to publish velocity commands to the Turtlebot and successfully follow the line throughout the environment. Once the Turtlebot reaches the end of the path , it searches for a line to follow again by rotating on spot. This way it finds the same path it took and returns back to the starting point. This way travelling between these points is performed continuously and can be extremely beneficial in any material handling applications. The procedure follows the algorithm shown in the picture below.
 
 ![alt text](UML/revised/ActivityDiagram_revised.png "Activity Diagram")
+
+The output from the turtlebot camera can be seen below. The image processing is performed from the images obtained from this camera.
+
+![alt text](Results/readme_images/view.png "Turtlebot view")
 
 ## Dependencies
 
@@ -45,7 +53,17 @@ source devel/setup.bash
 roslaunch line_follower_turtlebot lf.launch
 ```
 
-The output generated will look similar to this:
+The output generated will be launched in gazebo with one image viewer window similar to this:
+
+<a href="https://imgflip.com/gif/214xo9"><img src="https://i.imgflip.com/214xo9.gif" title="made at imgflip.com"/></a>
+
+The terminal's output will be similar to:
+
+> [ INFO] [1513353661.823250213, 2031.649000000]: Turning Left
+> [ INFO] [1513353662.039177398, 2031.850000000]: Straight
+> [ INFO] [1513353662.243911768, 2032.049000000]: Straight
+> ...
+
 
 ## Known Issues and Future Improvements
 * Due to the limitation of the location of the camera on the turtlebot the camera image cannot see lines right underneath it and only see the lines a little ahead of it. This causes the robot to have to turn before it actually even reaches the turn thus undercutting the turns. This limitation can be fixed by relocating the base camera a little closer to the ground on the turtlebot. This was a tough task in the Gazebo world due to the relations that need to be maintained for the turtlebot base_links, camera_links etc. Due to the height of the camera the image also had to be masked to prevent intervention from the future turns. 
@@ -54,6 +72,10 @@ The output generated will look similar to this:
 
 ## Demonstration
 
+The entire project has been demonstrated using a video and a presenation which can be accessed from below :
+
+[Project slides](https://docs.google.com/presentation/d/11z-mdd0ryByFo7QvxdRwzsLcfOYla6HGPNmMSVBkpIM/edit?usp=sharing)
+[Demonstration video](https://www.youtube.com/watch?v=n7LSSjZyFvE&feature=youtu.be)
 
 
 ## Testing
@@ -99,9 +121,9 @@ Make the following changes inside the configuration file
 > INPUT = ../app ../include ../test    
 
 The doxygen documents can be generated in the current directory (unless output directory is modified in the config file) using:
-
-> doxygen <config_file_name>
-
+```
+doxygen <config_file_name>
+```
 To view the documents easily, access the index.html file with your browser. For further information on the Doxygen Documentation: [Doxygen generation](http://flcwiki.desy.de/How%20to%20document%20your%20code%20using%20doxygen)
 
 The Doxygen files for this project have already been generated and can be viewed [here.](docs/html/index.html)
@@ -133,7 +155,7 @@ rosbag info Bagfile.bag
 ```
 
 ## Solo-Iterative Processes
-This project was designed and developed using the SIP process. Tasks were organized after being identified and split up. The Product backlog,Iteration backlog , Time log and Defect log were recorded for each task and can be viewed in the link below:  
+This project was designed and developed using the SIP process. Tasks were organized after being identified and split up. The Product backlog,Iteration backlog , Time log and Defect log were recorded for each task and can be viewed in the link below:   
 [SIP](https://docs.google.com/spreadsheets/d/1h3F1r1M49jn2B5hGm8tdiEN89Jc4dYUAVsPbGB_VrtQ/edit?usp=sharing)
 
 * Iteration 1 Initialization and Planning
@@ -141,7 +163,7 @@ This project was designed and developed using the SIP process. Tasks were organi
 * Iteration 3 Documentation and Testing
 
 ## Sprint Planning
-This project is also developed with sprint planning notes and reviews which can be found in the link below:
+This project is also developed with sprint planning notes and reviews which can be found in the link below:   
 [Sprint Planning](https://docs.google.com/document/d/1q21Tg8Xpm63OooYd_8vvN_ifJ2BOtM1LuFxLneyHSGI/edit?usp=sharing)
 
 ## About the creator
