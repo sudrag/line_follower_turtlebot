@@ -59,9 +59,9 @@ The output generated will be launched in gazebo with one image viewer window sim
 
 The terminal's output will be similar to:
 
-> [ INFO] [1513353661.823250213, 2031.649000000]: Turning Left
-> [ INFO] [1513353662.039177398, 2031.850000000]: Straight
-> [ INFO] [1513353662.243911768, 2032.049000000]: Straight
+> [ INFO] [1513353661.823250213, 2031.649000000]: Turning Left   
+> [ INFO] [1513353662.039177398, 2031.850000000]: Straight    
+> [ INFO] [1513353662.243911768, 2032.049000000]: Straight   
 > ...
 
 
@@ -74,7 +74,7 @@ The terminal's output will be similar to:
 
 The entire project has been demonstrated using a video and a presenation which can be accessed from below :
 
-[Project slides](https://docs.google.com/presentation/d/11z-mdd0ryByFo7QvxdRwzsLcfOYla6HGPNmMSVBkpIM/edit?usp=sharing)
+[Project slides](https://docs.google.com/presentation/d/11z-mdd0ryByFo7QvxdRwzsLcfOYla6HGPNmMSVBkpIM/edit?usp=sharing)    
 [Demonstration video](https://www.youtube.com/watch?v=n7LSSjZyFvE&feature=youtu.be)
 
 
