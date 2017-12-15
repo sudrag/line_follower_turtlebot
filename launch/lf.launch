@@ -1,5 +1,7 @@
 <launch>
 
+<arg name = "StartRec" default = "false" />
+
 <include 
 file = "$(find turtlebot_gazebo)/launch/turtlebot_world.launch">
 <arg name = "world_file" value =  "$(find line_follower_turtlebot)/Maps/lfm1.world"/>
@@ -12,5 +14,15 @@ file = "$(find turtlebot_gazebo)/launch/turtlebot_world.launch">
 <!-- Robot commands node -->
 <node pkg="line_follower_turtlebot" name="Velocity" type="navig" cwd="node" output="screen">
 </node>
+
+<node
+pkg = "rosbag"
+type = "record"
+name = "rosbag_record_all"
+respawn = "true"
+output = "screen"
+args = "-a -O BagFile -x /camera/(.*) "
+if = "$(arg StartRec)"
+/>
 
 </launch>
