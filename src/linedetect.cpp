@@ -91,7 +91,7 @@ int LineDetect::colorthresh(cv::Mat input) {
   rectangle(input, pt1, pt2, CV_RGB(255, 0, 0), 2);
   // Inserting text box
   cv::putText(input, "Line Detected", pt3,
-    CV_FONT_HERSHEY_COMPLEX, 1, CV_RGB(255, 0, 0));
+    cv::FONT_HERSHEY_COMPLEX, 1, CV_RGB(255, 0, 0));
   }
   // Mask image to limit the future turns affecting the output
   img_mask(cv::Rect(0.7*w, 0, 0.3*w, h)) = 0;
