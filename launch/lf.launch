@@ -2,11 +2,6 @@
 
 <arg name = "StartRec" default = "false" />
 
-<include 
-file = "$(find turtlebot_gazebo)/launch/turtlebot_world.launch">
-<arg name = "world_file" value =  "$(find line_follower_turtlebot)/Maps/lfm1.world"/>
-</include>
-
 <!-- Detection node -->
 <node pkg="line_follower_turtlebot" name="detection" type="detect" cwd="node" output="screen">
 </node>
