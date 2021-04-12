@@ -37,7 +37,7 @@ void turtlebot::vel_cmd(geometry_msgs::Twist &velocity,
     // If direction is left
     if (turtlebot::dir == 0) {
         velocity.linear.x = 0.1;
-        velocity.angular.z = 0.15;
+        velocity.angular.z = 0.30;
         pub.publish(velocity);
         rate.sleep();
         ROS_INFO_STREAM("Turning Left");
@@ -53,7 +53,7 @@ void turtlebot::vel_cmd(geometry_msgs::Twist &velocity,
     // If direction is right
     if (turtlebot::dir == 2) {
         velocity.linear.x = 0.1;
-        velocity.angular.z = -0.15;
+        velocity.angular.z = -0.30;
         pub.publish(velocity);
         rate.sleep();
         ROS_INFO_STREAM("Turning Right");
@@ -61,7 +61,7 @@ void turtlebot::vel_cmd(geometry_msgs::Twist &velocity,
     // If robot has to search
     if (turtlebot::dir == 3) {
         velocity.linear.x = 0;
-        velocity.angular.z = 0.25;
+        velocity.angular.z = 0.40;
         pub.publish(velocity);
         rate.sleep();
         ROS_INFO_STREAM("Searching");
