@@ -44,7 +44,7 @@ int main(int argc, char **argv) {
     ros::NodeHandle n;
     LineDetect det;
     // Creating Publisher and subscriber
-    ros::Subscriber sub = n.subscribe("/camera/rgb/image_raw",
+    ros::Subscriber sub = n.subscribe("/raspicam_node/image",
         1, &LineDetect::imageCallback, &det);
 
     ros::Publisher dirPub = n.advertise<
@@ -61,6 +61,4 @@ int main(int argc, char **argv) {
             }
         ros::spinOnce();
     }
-    // Closing image viewer
-    cv::destroyWindow("Turtlebot View");
 }
