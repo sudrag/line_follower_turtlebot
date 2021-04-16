@@ -1,9 +1,6 @@
 <launch>
 
 <arg name = "StartRec" default = "false" />
-  
-<remap from="/camera/rgb/image_raw" to="/raspicam_node/image"/>
-<remap from="/cmd_vel_mux/input/teleop" to="/cmd_vel"/>
 
 <!-- Detection node -->
 <node pkg="line_follower_turtlebot" name="detection" type="detect" cwd="node" output="screen">
